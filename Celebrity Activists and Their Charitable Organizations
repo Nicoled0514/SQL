@@ -1,0 +1,63 @@
+/* Create a table about famous people and the causes they activists for. As well, as the organizations they started or partnered with. 
+CREATE TABLE celebrities (id INTEGER PRIMARY KEY,
+first_name TEXT,
+last_name TEXT, 
+cause TEXT);
+    
+INSERT INTO celebrities (first_name, last_name, cause)
+VALUES ("Leonardo", "Leonardo DiCaprio", "Environment, Climate Change, Animal Rights");
+ INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("Emma", " Watson", "Women’s Rights/Advocacy");
+INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("George", " Clooney", "Human Rights Abuse");
+INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("Gary", " Sinise", "Military Veterans");
+INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("Seth", " Rogan", "Alzheimer’s Disease");
+INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("Angelina", " Jolie", "Refugee Welfare");
+ INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("Michael J", " Fox", " Parkinson’s Disease");
+ INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("Tim", " Tebow", " Human Trafficking");
+INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("Stephen", "Curry", " Childhood Hunger Relief");
+ INSERT INTO celebrities(first_name, last_name, cause)
+    VALUES ("Willie", "Nelson", "Family Farms");
+ 
+CREATE TABLE organization (id INTEGER PRIMARY KEY,
+organization_id INTEGER,
+organization_name TEXT,
+celebrity_organization TEXT, 
+donation INTEGER);
+    
+  INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+    VALUES (11, "LEONARDO DICAPRIO FOUNDATION", "Leonardo DiCaprio",80000000);
+  INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+    VALUES (12, "UN WOMEN", "Emma Waston",1400000);
+  INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+    VALUES (13, "CLOONEY FOUNDATION FOR JUSTICE", "George Clooney",1000000);
+      INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+    VALUES (14, "GARY SINESE FOUNDATION", "Gary Sinise",30000000);
+      INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+    VALUES (15, "HILARITY FOR CHARITY", "Seth Rogan",13000000);
+  INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+    VALUES (16, "UNITED NATIONS REFUGEE AGENCY", "Angelina Jolie",1000000);
+    INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+    VALUES (17, "THE MICHAEL J. FOX FOUNDATION FOR PARKINSON’S RESEARCH", "Michael J. Fox",450000000);
+  INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+   VALUES (18, "TIM TEBOW FOUNDATION", "Tim Tebow",NULL);
+   INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+     VALUES (19, "EAT. LEARN. PLAY. FOUNDATION", "Stephen Curry",150000);
+     INSERT INTO organization (organization_id, organization_name, celebrity_organization, donation)
+      VALUES (10, "FARM AID", "Willie Nelson",50000000);
+      
+SELECT * FROM celebrities;
+SELECT * FROM organization;
+
+SELECT c.first_name, c.last_name, o.organization_name,c.cause, o.celebrity_organization,o.donation 
+FROM celebrities c
+    JOIN organization o
+    ON c.id = o.id
+    ORDER BY donation ASC;
+
