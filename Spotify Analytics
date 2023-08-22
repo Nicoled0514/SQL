@@ -1,0 +1,48 @@
+# For this project, I downloaded Spotify data from Kaggle.
+# Then I created a table to insert Spotify data into.
+# Finally, I performed analytics on the data using SQL. 
+
+#Creating the table: 
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+#Then I inserted the Spotify Data .csv into the table.
+
+#Next, I explored the data using the following SQL. 
+#1 Which artists was the most popular and what was the name of them tracks?
+SELECT popularity,artist_name, track_name
+FROM BIT_DB.Spotifydata 
+WHERE popularity >89
+ORDER BY popularity DESC
+LIMIT 10
+#2 Which artist have the most  the number of vocals in a song? The closer the value to 1.0, the more instrumental the song is- Instrumentalness  and what track was it
+SELECT MAX(instrumentalness), artist_name, track_name
+FROM BIT_DB.Spotifydata 
+WHERE instrumentalness <1.0
+ORDER BY track_name, artist_name;
+#3 Which track  was the least uplifting/postive when listening to it. 
+Which artist is the track from; Valence - The higher the value, the more positive mood for the song
+
+SELECT MIN(Valence) as 'Valence', artist_name, track_name
+FROM BIT_DB.Spotifydata 
+WHERE Valence >0.0
+ORDER BY track_name, artist_name
+
