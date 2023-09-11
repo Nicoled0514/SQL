@@ -1,0 +1,40 @@
+# What is the average revenue for each industry? 
+SELECT AVG(revenue) as 'Average Revenue', industry
+FROM fortune_companies
+GROUP BY industry
+ORDER BY AVG(revenue) DESC;
+
+# How many companies are under Fortune 500?
+SELECT COUNT(company_name) as "Fortune 500 Companies"
+FROM fortune_companies;
+
+# Which Fortune 500 companies currently employ more than 30,000 employees?
+SUM(employees) AS "total_employees"
+FROM fortune_companies
+GROUP BY company_name
+HAVING SUM(employees) > 30000
+ORDER BY SUM(employees) DESC;
+
+# Which company has the greatest amount of time a person works for their company?
+SELECT MAX (avg_employee_tenure) AS "average employee tenure",
+company_name
+FROM fortune_companies;
+
+# Which companies have benefits that include paid time off days of at least 20 days, maternity leave of more than 12 weeks, and an average employee tenure of more then 7?
+SELECT company_name
+FROM fortune_companies
+WHERE paid_time_off_days >= 20
+and maternity_leave_weeks >12
+and avg_employee_tenure>7;
+
+# Assign all the companies in the Healthcare industry as "mother friendly workplace", "acceptable", or "abysmal" based on the maternity leave offered. 
+SELECT
+company_name,
+CASE 
+  WHEN maternity_leave_weeks >= 10 THEN 'mother friendly workplace'
+  WHEN maternity_leave_weeks >= 8 THEN 'acceptable'
+  ELSE 'abysmal'
+END as mother_friendliness
+FROM fortune_companies
+WHERE industry='Healthcare'
+;
