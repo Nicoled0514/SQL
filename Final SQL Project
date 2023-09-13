@@ -1,15 +1,16 @@
-#1 Show the employees (their full names) who were the most recent hires and their date of hire.
+#1 Show the employees (their full names) who were the most recent hires and their dates of hire.
 SELECT emp.LastName, emp.Firstname, emp.HireDate
 FROM chinook.Employees emp 
-ORDER BY emp.HireDate DESC; 
+ORDER BY emp.HireDate DESC
+; 
 
-# 2 Show the employees (their full names) who work title are Sales Support Agent.
+# 2 Show the employees (their full names) whose work titles are Sales Support Agent.
 SELECT emp.LastName, emp.Firstname
 FROM chinook.Employees emp 
 WHERE emp.Title ='Sales Support Agent'
 ;
 
-# 3 Find the Invoices of customers who are from Netherlands. The resulting table should show the customer's full name, Invoice ID, Date of the invoice, and billing country.
+# 3 Find the invoices of customers who are from the Netherlands. The resulting table should show the customer's full name, Invoice ID, Date of the invoice, and billing country.
 SELECT cust.FirstName, cust.LastName, inv.InvoiceId, inv.BillingCountry, inv.InvoiceDate
 FROM chinook.invoices as inv 
 LEFT JOIN chinook.customers as cust 
@@ -27,7 +28,7 @@ HAVING artists.Name LIKE'B%'
 ORDER BY artists.Name ASC
 ;
 
-# 5 Write a query that will select the email addresses of all the customers who are billing country are in France. 
+# 5 Write a query that will select the email addresses of all the customers whose billing country is in France. 
 SELECT cust.Email, inv.BillingCountry
 FROM chinook.customers as cust
 LEFT JOIN chinook.invoices as inv
@@ -36,9 +37,9 @@ WHERE inv.BillingCountry = 'France'
 GROUP BY cust.Email
 ;
 
-#6  Write a query that will select the addresses of all the customers who are address are in the USA
+#6  Write a query that will select the addresses of all the customers who are in the USA
 SELECT cust.Address
 FROM chinook.customers as cust
 WHERE cust.Country = "USA"
-
+;
 #7 
