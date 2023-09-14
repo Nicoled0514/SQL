@@ -49,6 +49,41 @@ LEFT JOIN chinook.albums as al
 on al.AlbumID = t.AlbumId
 WHERE t.Name = 'Portia'
 ;
-#8 
+#8  How many Invoices were there was 'NULL' in 2009
+SELECT COUNT(BillingState) as 'Billing State' 
+FROM chinook.invoices
+Having BillingState = 'NULL' 
+;
+#9 Show the Billing State that doesn't have NULL under it. This only demonstrates all the Billing States.
+SELECT BillingCountry, BillingState, BillingCity
+FROM chinook.invoices
+WHERE BillingState IS NOT NULL 
+ORDER BY BillingCountry
+;
 
+#10 What are the total sales for the City of New York in the USA?
+SELECT SUM (Total)
+FROM chinook.invoices
+WHERE BillingCountry = 'USA'
+AND BillingCity
+ = 'New York'
 
+#11 What was France's highest total sales and on what date was it on. 
+SELECT Max (Total), InvoiceDate
+FROM chinook.invoices
+WHERE BillingCountry = 'France'
+
+#12 Which track has the least Bytes?
+SELECT MIN(t.Bytes)as "Track Bytes", t.name
+FROM chinook.tracks as t
+;
+#13 What was the average Invoice in 2009?
+SELECT AVG (Total)
+FROM chinook.invoices
+WHERE InvoiceDate Between'2009-01-01' AND '2009-12-31'
+;
+#14 The number of invoices where the Total is higher than $15
+SELECT COUNT(InvoiceId)
+FROM chinook.invoices
+WHERE Total > 15.00
+;
