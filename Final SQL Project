@@ -42,4 +42,13 @@ SELECT cust.Address
 FROM chinook.customers as cust
 WHERE cust.Country = "USA"
 ;
-#7 
+#7  Provide a query that shows the album where the track 'Portia ' belongs to.
+SELECT t.Name as 'Track Name' , al.Title as 'Album Title'
+FROM chinook.tracks as t
+LEFT JOIN chinook.albums as al
+on al.AlbumID = t.AlbumId
+WHERE t.Name = 'Portia'
+;
+#8 
+
+
