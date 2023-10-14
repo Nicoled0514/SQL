@@ -1,0 +1,25 @@
+ For this project, I downloaded Airlines Dataset from Kaggle.
+ I performed analytics on the data using SQL. 
+
+#First I determined every aircraft window seats for Business class
+SELECT seat_no, aircraft_code
+FROM travel.seats
+WHERE fare_conditions = "Business"
+and seat_no LIKE '_A%'
+Order BY aircraft_code
+
+# Which booking date has the most booking
+SELECT Max(total_amount), book_date
+FROM travel.bookings;
+
+# Every cancelled flight out of Moscow Domodedovo Airport (DME)
+SELECT *
+FROM travel.flights
+WHERE departure_airport= "DME"
+AND status = "Cancelled"
+ORDER BY "aircraft_code"
+
+#Every airport with 'Asia/Yakutsk' timezone
+SELECT airport_name
+FROM travel.airports_data
+WHERE timezone = 'Asia/Yakutsk'
