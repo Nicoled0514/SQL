@@ -1,0 +1,36 @@
+
+# What is the average hourly wage of female employees compared to male employees?
+SELECT Avg (women_average) as "Women Wage", 
+AVG( men_average ) as  "Men Wage"
+FROM BIT_DB.gender_wage;
+
+#What is the median hourly wage for female employees compared to male employees in the 20th century?
+SELECT year, 
+women_median as "women median hourly wage ", 
+men_median as "men median hourly wage "
+FROM BIT_DB.gender_wage
+WHERE year BETWEEN "000" and "022";
+
+# What is the average hourly wage of all races for female employees compared to all male races employees throughout the years?
+SELECT year,
+white_men_average as "white men", 
+black_men_average as "black men",
+hispanic_men_average as "Hispanic men",
+white_women_average as "white women", 
+black_women_average as "black women", 
+hispanic_women_average as "Hispanic women"
+FROM BIT_DB.gender_wage
+
+#Are there any differences in wages between  white male employees vs minority female employees?
+SELECT
+AVG (white_men_average) as "white men", 
+AVG (black_women_average) as "black women", 
+AVG(hispanic_women_average) as "hispanic women"
+FROM BIT_DB.gender_wage
+
+#Are there any differences in wages between white female employees vs black male employees during the past 10 years (2012-2022)?
+SELECT
+AVG (white_women_average) as "white women", 
+AVG (black_men_average) as "black men"
+FROM BIT_DB.gender_wage
+WHERE year= '012' and '022'
