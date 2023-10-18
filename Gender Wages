@@ -11,7 +11,7 @@ men_median as "men median hourly wage "
 FROM BIT_DB.gender_wage
 WHERE year BETWEEN "000" and "022";
 
-# What is the average hourly wage of all races for female employees compared to all male races employees throughout the years?
+#What is the average difference in hourly wages between male and female workers by race? throughout the years?
 SELECT year,
 white_men_average as "white men", 
 black_men_average as "black men",
@@ -34,3 +34,54 @@ AVG (white_women_average) as "white women",
 AVG (black_men_average) as "black men"
 FROM BIT_DB.gender_wage
 WHERE year= '012' and '022'
+
+#Compared to the average wages of female employees between $25-$28 per hours to male average wages
+SELECT year,
+men_average,
+women_average 
+FROM BIT_DB.gender_wage
+WHERE women_average between '25' and '28';
+
+#What is the average hourly wage for male workers by race? 
+SELECT
+AVG (white_men_average) as "white men", 
+AVG (black_men_average) as "black men", 
+AVG(hispanic_men_average) as "hispanic men"
+FROM BIT_DB.gender_wage
+
+#What is the average hourly wage for male workers by race for the year 2022? 
+SELECT 
+white_men_average as "white men", 
+black_men_average as "black men", 
+hispanic_men_average as "hispanic men"
+FROM BIT_DB.gender_wage 
+WHERE year ='022'
+
+#What is the average hourly wage for female workers by race? 
+SELECT
+AVG (white_women_average) as "white women", 
+AVG (black_women_average) as "black women", 
+AVG(hispanic_women_average) as "hispanic women"
+FROM BIT_DB.gender_wage
+
+#What is the median hourly wage for male workers by race? 
+SELECT
+AVG (white_men_median) as "white men", 
+AVG (black_men_median) as "black men", 
+AVG(hispanic_men_median) as "hispanic men"
+FROM BIT_DB.gender_wage
+
+#What is the median hourly wage for female workers by race? 
+SELECT
+AVG (white_women_median) as "white women", 
+AVG (black_women_median) as "black women", 
+AVG(hispanic_women_median) as "hispanic women"
+FROM BIT_DB.gender_wage
+
+#What is the median hourly wage for female workers by race from 2000 to 2022? 
+SELECT year,
+white_women_median as "white women", 
+black_women_median as "black women", 
+hispanic_women_median as "hispanic women"
+FROM BIT_DB.gender_wage
+WHERE year BETWEEN '000' and '022';
