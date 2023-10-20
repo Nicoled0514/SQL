@@ -1,6 +1,6 @@
 #In this SQL code, I'm querying a database that's holding 2023 Amazon Product data to answer questions about the data. 
 
-# Every product on amazon under Baby Safety Products where the product was 5 stars.
+# Every product on Amazon under Baby Safety Products where the product was 5 stars.
 FROM BIT_DB.amazon_categories as 'categories'
 LEFT JOIN BIT_DB.amazon_products as 'products'
 ON categories.id=products.category_id
@@ -13,7 +13,7 @@ ORDER BY reviews DESC
 SELECT *
 FROM BIT_DB.amazon_caterogies as 'caterogies'
  
-#Which niches are the easiest to make sales in.
+#Which niches are the easiest to make sales in
 SELECT MAX(products.boughtInLastMonth), categories.category_name
 FROM BIT_DB.amazon_categories as 'categories'
 INNER JOIN BIT_DB.amazon_products as 'products'
