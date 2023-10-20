@@ -1,0 +1,118 @@
+#In this SQL code, I'm querying a database that's holding 2023 Amazon Product data to answer questions about the data. 
+
+# Every product on amazon under Baby Safety Products where the product was 5 stars.
+FROM BIT_DB.amazon_categories as 'categories'
+LEFT JOIN BIT_DB.amazon_products as 'products'
+ON categories.id=products.category_id
+WHERE products.stars ='5.0'
+AND products.price = '6.99'
+AND categories.category_name = 'Baby Safety Products'
+ORDER BY reviews DESC
+
+# What categories of products are available on Amazon? 
+SELECT *
+FROM BIT_DB.amazon_caterogies as 'caterogies'
+ 
+#Which niches are the easiest to make sales in.
+SELECT MAX(products.boughtInLastMonth), categories.category_name
+FROM BIT_DB.amazon_categories as 'categories'
+INNER JOIN BIT_DB.amazon_products as 'products'
+ON categories.id=products.category_id
+
+#.Which products have the highest ratings on Amazon? 
+SELECT title
+FROM BIT_DB.amazon_products 
+WHERE stars >= 5
+
+# Which products have the highest prices on Amazon? 
+SELECT 
+SELECT title, MAX(price)as 'Price'
+FROM BIT_DB.amazon_products 
+
+# Which products have the lowest prices on Amazon? 
+SELECT title, MIN(price)as 'Price'
+FROM BIT_DB.amazon_products 
+
+# What is the average price of products on Amazon?
+SELECT AVG(price)
+FROM BIT_DB.amazon_products 
+
+#.How many products are available in each Amazon category? 
+SELECT COUNT(products.title ) as 'products ',categories.category_name
+FROM BIT_DB.amazon_categories as 'categories'
+JOIN BIT_DB.amazon_products as 'products'
+ON categories.id=products.category_id
+GROUP BY category_name
+
+#What is the most popular product on Amazon? 
+SELECT MAX(products.boughtInLastMonth),
+products.title
+FROM BIT_DB.amazon_categories as 'categories'
+JOIN BIT_DB.amazon_products as 'products'
+ON categories.id=products.category_id
+
+#What is the least popular product on Amazon? 
+SELECT MIN(products.boughtInLastMonth),
+products.title
+FROM BIT_DB.amazon_categories as 'categories'
+JOIN BIT_DB.amazon_products as 'products'
+ON categories.id=products.category_id
+
+#Which Amazon products have the highest number of reviews? 
+
+SELECT title,reviews
+FROM BIT_DB.amazon_products 
+WHERE reviews = '5' 
+
+#Which Amazon products have the lowest number of reviews? 
+
+SELECT title, reviews
+FROM BIT_DB.amazon_products 
+WHERE reviews = '0' 
+
+
+#Which Amazon product from each category has the lowest number of reviews? 
+SELECT 
+products.title, products.reviews, categories.category_name
+FROM BIT_DB.amazon_categories as 'categories'
+JOIN BIT_DB.amazon_products as 'products'
+ON categories.id=products.category_id
+WHERE products.reviews = '0'
+GROUP BY categories.category_name
+
+#Which Amazon product from each category has the highest number of reviews? 
+
+SELECT 
+products.title, products.reviews, categories.category_name
+FROM BIT_DB.amazon_categories as 'categories'
+JOIN BIT_DB.amazon_products as 'products'
+ON categories.id=products.category_id
+WHERE products.reviews = '5'
+GROUP BY categories.category_name
+
+#What is the Amazon URL for the product 'Arm Sleeves'? What is the image URL? And what it's asin?
+SELECT productURL
+FROM BIT_DB.amazon_products as 'products'
+WHERE title IS 'Arm Sleeves'
+.
+. 
+
+SELECT imgURL
+FROM BIT_DB.amazon_products as 'products'
+WHERE title IS 'Arm Sleeves'
+.
+. 
+
+SELECT asin
+FROM BIT_DB.amazon_products as 'products'
+WHERE title IS 'Arm Sleeves'
+
+# What is the Amazon product URL for Luggage sets with more than 4 stars?
+SELECT productURL, title
+FROM BIT_DB.amazon_products 
+WHERE title LIKE "Luggage Sets%"
+AND stars > 4
+
+
+
+
